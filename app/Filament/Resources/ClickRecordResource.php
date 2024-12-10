@@ -44,6 +44,8 @@ class ClickRecordResource extends Resource
                     ->formatStateUsing(function ($state){
                         return date_format(Carbon::parse($state), 'd M Y h:i:s A');
                     }),
+                TextColumn::make('session_id')
+                    ->copyable(),
             ])
             ->filters([
                 //

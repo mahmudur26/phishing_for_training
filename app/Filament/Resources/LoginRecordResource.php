@@ -21,7 +21,7 @@ class LoginRecordResource extends Resource
 {
     protected static ?string $model = LoginRecord::class;
 
-    
+
     protected static ?string $label = "Login Record";
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
@@ -47,6 +47,8 @@ class LoginRecordResource extends Resource
                     ->formatStateUsing(function ($state){
                         return date_format(Carbon::parse($state), 'd M Y h:i:s A');
                     }),
+                TextColumn::make('session_id')
+                    ->copyable(),
             ])
             ->filters([
                 //
