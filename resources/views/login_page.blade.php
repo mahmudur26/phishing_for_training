@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Facebook - Log In or Sign Up</title>
+  <title>Facebook | Log In or Sign Up</title>
   <style>
     /* General Reset */
 * {
@@ -63,7 +63,7 @@ body {
   gap: 15px;
 }
 
-input[type="email"], 
+input[type="email"],
 input[type="password"] {
   width: 100%;
   padding: 12px;
