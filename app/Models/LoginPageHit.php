@@ -20,5 +20,6 @@ class LoginPageHit extends Model
         'os_version',
         'browser_name',
         'browser_version',
+        'session_id',
     ];
 }
