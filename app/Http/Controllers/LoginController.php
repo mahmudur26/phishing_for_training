@@ -11,11 +11,12 @@ class LoginController extends Controller
 {
     public function login_page(){
         $agent = new Agent();
+
         LoginPageHit::query()->create([
 
             'url'   => url()->current(),
             'ip_address' => request()->ip(),
-            'device_type' => $agent->device(),
+            'device_type' => $agent->isDesktop() ? 'Desktop' : 'Mobile',
             'os_name' => $agent->platform(),
             'os_version' => $agent->version($agent->platform()),
             'browser_name' => $agent->browser(),
@@ -33,7 +34,7 @@ class LoginController extends Controller
 
             'url'   => url()->current(),
             'ip_address' => request()->ip(),
-            'device_type' => $agent->device(),
+            'device_type' => $agent->isDesktop() ? 'Desktop' : 'Mobile',
             'os_name' => $agent->platform(),
             'os_version' => $agent->version($agent->platform()),
             'browser_name' => $agent->browser(),
