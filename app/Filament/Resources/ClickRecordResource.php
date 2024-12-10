@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ClickRecordResource\Pages;
 use App\Filament\Resources\ClickRecordResource\RelationManagers;
+use App\Filament\Resources\ClickRecordResource\Widgets\TotalCountOverview;
 
 class ClickRecordResource extends Resource
 {
@@ -61,6 +62,13 @@ class ClickRecordResource extends Resource
     {
         return [
             //
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            TotalCountOverview::class,
         ];
     }
 
