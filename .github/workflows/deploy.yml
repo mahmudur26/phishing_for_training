@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - production
+name: 🚀 Deploy ibas application on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📦 Zip specific folders and files
+        run: zip -r latest.zip app config database public resources routes storage
+
+      - name: Create directory for zip file
+        run: mkdir -p zip
+
+      - name: Copy zip file to zip directory
+        run: cp latest.zip zip/latest.zip
+
+      - name: 📂 Transfer zip to server via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 217.21.74.171
+          port: 21
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          local-dir: ./zip/
+          server-dir: ./zip/
+
+      - name: 📂 SSH into server and unzip
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.ssh_ip }}
+          port: ${{ secrets.ssh_port }}
+          username: ${{ secrets.ssh_username }}
+          password: ${{ secrets.ssh_password }}
+          script: |
+            unzip -o /home/u188704625/domains/the-pencil.com/public_html/zip/latest.zip -d /home/u188704625/domains/the-pencil.com/public_html/
+            rm /home/u188704625/domains/the-pencil.com/public_html/zip/latest.zip
